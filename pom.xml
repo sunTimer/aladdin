@@ -11,6 +11,7 @@
     <modules>
         <module>aladdin-netty</module>
         <module>aladdin-leetcode</module>
+        <module>aladdin-j8</module>
     </modules>
 
 
