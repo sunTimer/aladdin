@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aladdin-j8" />
-        <module name="aladdin-leetcode" />
         <module name="aladdin-netty" />
+        <module name="aladdin-leetcode" />
+        <module name="aladdin-fenci" />
+        <module name="aladdin-spring" />
       </profile>
     </annotationProcessing>
   </component>

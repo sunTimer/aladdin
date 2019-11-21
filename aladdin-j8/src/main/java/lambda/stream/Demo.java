@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.lang.Character.isDigit;
@@ -93,5 +94,17 @@ public class Demo {
                 .collect(toList());
 
         assertEquals(beginningWithNumbers, asList("1abc"));
+    }
+
+    @Test
+    public void test6() {
+        List<String> collected = Stream.of("abc", "fsdfs").collect(toList());
+
+        collected.stream().map(i -> new StringBuilder(i)).forEach(System.out::println);
+    }
+
+    @Test
+    public void test7(){
+        IntStream.range(0,5).forEach(System.out::println);
     }
 }

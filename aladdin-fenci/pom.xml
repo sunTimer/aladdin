@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>aladdin-netty</artifactId>
+    <artifactId>aladdin-fenci</artifactId>
     <build>
         <plugins>
             <plugin>
@@ -23,33 +23,15 @@
         </plugins>
     </build>
 
+
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.huaban/jieba-analysis -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.huaban</groupId>
+            <artifactId>jieba-analysis</artifactId>
+            <version>1.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.12</version>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.36.Final</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-core</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
     </dependencies>
+
+
 </project>

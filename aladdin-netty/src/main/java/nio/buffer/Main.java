@@ -1,4 +1,4 @@
-package nio;
+package nio.buffer;
 
 public class Main {
 }
