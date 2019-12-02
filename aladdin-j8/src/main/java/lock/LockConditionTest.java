@@ -11,7 +11,6 @@ public class LockConditionTest {
     public static void main(String[] args) {
         MyQueue<String> byCondition = new BoundQueueByCondition<>();
         MyQueue<String> bySynchronized = new BoundQueueBySynchronized<>();
-
         test(byCondition);
         test(bySynchronized);
     }
