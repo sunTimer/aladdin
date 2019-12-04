@@ -25,7 +25,6 @@ public class ThreadStateWhenAcquireLock {
         t1.start();
         t2.start();
 
-
         boolean notAllTerminated = !t1.getState().name().equals("TERMINATED")
                 || !t2.getState().name().equals("TERMINATED");
         while (notAllTerminated) {
