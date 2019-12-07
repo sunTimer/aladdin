@@ -1,4 +1,4 @@
-package array;
+package array.pk0;
 
 public class _66 {
     public int[] plusOne(int[] digits) {

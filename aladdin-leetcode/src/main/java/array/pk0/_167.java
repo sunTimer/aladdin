@@ -1,4 +1,4 @@
-package array;
+package array.pk0;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -65,3 +65,4 @@ public class _167 {
         return -1;
     }
 }
+
