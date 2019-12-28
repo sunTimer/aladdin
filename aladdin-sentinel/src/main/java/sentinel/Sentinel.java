@@ -1,8 +1,6 @@
 package sentinel;
 
-import com.alibaba.csp.sentinel.Entry;
-import com.alibaba.csp.sentinel.SphO;
-import com.alibaba.csp.sentinel.SphU;
+import com.alibaba.csp.sentinel.*;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
@@ -28,6 +26,22 @@ public class Sentinel {
 //                System.out.println("blocked!");
 //            }
 //        }
+
+        Entry entry = null;
+        try {
+            entry = SphU.entry("key", EntryType.IN, 6);
+
+            // Write your biz code here.
+            // <<BIZ CODE>>
+        } catch (Throwable t) {
+            if (!BlockException.isBlockException(t)) {
+                Tracer.trace(t);
+            }
+        } finally {
+            if (entry != null) {
+                entry.exit();
+            }
+        }
 
 
         while (true) {
@@ -68,4 +82,7 @@ public class Sentinel {
 
 class DoSomething {
 
+    public static void main(String[] args) {
+        System.out.println("hello world");
+    }
 }
