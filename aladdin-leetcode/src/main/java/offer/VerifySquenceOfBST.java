@@ -3,6 +3,9 @@ package offer;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * 检验序列是否是bst的后序遍历结果
+ */
 public class VerifySquenceOfBST {
     public boolean VerifySquenceOfBST(int[] sequence) {
         if (sequence == null || sequence.length == 0) {
