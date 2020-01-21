@@ -1,4 +1,6 @@
-package tree;
+package tree.pk1;
+
+import tree.TreeNode;
 
 public class _226 {
 

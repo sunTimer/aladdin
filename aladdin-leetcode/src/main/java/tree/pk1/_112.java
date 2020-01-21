@@ -1,6 +1,7 @@
-package tree;
+package tree.pk1;
 
 import org.junit.Test;
+import tree.TreeNode;
 
 public class _112 {
 
