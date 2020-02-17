@@ -4,9 +4,10 @@ import lambda.model.Artist;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -104,7 +105,7 @@ public class Demo {
     }
 
     @Test
-    public void test7(){
-        IntStream.range(0,5).forEach(System.out::println);
+    public void test7() {
+        IntStream.range(0, 5).forEach(System.out::println);
     }
 }
