@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class LRUCache<K, V> implements Iterable<K>{
+public class LRUCache<K, V> implements Iterable<K> {
 
     Node<K, V> head;
     Node<K, V> tail;
@@ -83,7 +83,21 @@ public class LRUCache<K, V> implements Iterable<K>{
 
     @Override
     public Iterator<K> iterator() {
-        return null;
+        return new Iterator<K>() {
+            private Node<K, V> curr = head.next;
+
+            @Override
+            public boolean hasNext() {
+                return curr != tail;
+            }
+
+            @Override
+            public K next() {
+                Node<K, V> node = curr;
+                curr = curr.next;
+                return node.k;
+            }
+        };
     }
 }
 

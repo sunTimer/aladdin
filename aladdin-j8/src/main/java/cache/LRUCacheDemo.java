@@ -11,5 +11,8 @@ public class LRUCacheDemo {
         lruCache.put("nenene","dfsfd");
         System.out.println(lruCache.storage);
 
+        for (String s : lruCache) {
+            System.out.println(s);
+        }
     }
 }
