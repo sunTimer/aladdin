@@ -12,6 +12,7 @@
         <module name="aladdin-fenci" />
         <module name="aladdin-spring" />
         <module name="aladdin-leetcode" />
+        <module name="aladdin-tools" />
       </profile>
     </annotationProcessing>
   </component>

@@ -8,32 +8,29 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
-import java.util.Set;
 
 public class ServerSocketDemo {
+
+
+
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket();
         SocketAddress socketAddress = new InetSocketAddress(8899);
         serverSocket.bind(socketAddress);
+        SocketAddress localSocketAddress = serverSocket.getLocalSocketAddress();
+        System.out.println(localSocketAddress);
 
         while (true) {
-
-            Socket accept = serverSocket.accept();
-
-            InputStream inputStream = accept.getInputStream();
-
+            Socket connectedSocket = serverSocket.accept();
+            System.out.println("server socket:" + connectedSocket.hashCode());
+            System.out.println("server port:" + connectedSocket.getLocalPort());
+            InputStream inputStream = connectedSocket.getInputStream();
             byte[] buffer = new byte[1024];
             inputStream.read(buffer);
-
-            System.out.println("from " + accept.getRemoteSocketAddress()
+            System.out.println("from " + connectedSocket.getRemoteSocketAddress()
                     + ". received msg :" + new String(buffer));
-
+            connectedSocket.close();
         }
     }
 
@@ -46,6 +43,7 @@ class Client {
 
         OutputStream outputStream = socket.getOutputStream();
 
+        System.out.println("local port:" + socket.getLocalPort());
         for (int i = 0; i < 10; i++) {
             outputStream.write("hello world".getBytes(Charset.defaultCharset()));
         }
