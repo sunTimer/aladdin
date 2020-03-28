@@ -43,7 +43,6 @@ public class ReservoirSampling {
                 retArray[d] = pools[i];
             }
         }
-
         return retArray;
     }
 

@@ -18,8 +18,8 @@ public class WaitNotify {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                lock.lock();
                 while (i < 100) {
-                    lock.lock();
                     if (i % 2 == 0) {
                         try {
                             a.await();
@@ -29,9 +29,8 @@ public class WaitNotify {
                     }
                     System.out.println(Thread.currentThread().getName() + ":" + i++);
                     b.signal();
-                    lock.unlock();
                 }
-
+                lock.unlock();
             }
         }).start();
 
@@ -39,8 +38,8 @@ public class WaitNotify {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                lock.lock();
                 while (i <= 100) {
-                    lock.lock();
                     if (i % 2 != 0) {
                         try {
                             b.await();
@@ -50,9 +49,8 @@ public class WaitNotify {
                     }
                     System.out.println(Thread.currentThread().getName() + ":" + i++);
                     a.signal();
-                    lock.unlock();
                 }
-
+                lock.unlock();
             }
         }).start();
     }

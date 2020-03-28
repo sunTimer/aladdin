@@ -9,6 +9,5 @@ public class EchoServerNio {
 
         ServerSocket serverSocket = new ServerSocket();
         ServerSocketChannel channel = serverSocket.getChannel();
-
     }
 }
