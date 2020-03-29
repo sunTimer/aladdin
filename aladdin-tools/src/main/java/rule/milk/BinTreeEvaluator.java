@@ -14,7 +14,7 @@ import java.util.Stack;
  *                  n   4  h  1
  * </pre>
  */
-public class BinTreeExpressionGen {
+public class BinTreeEvaluator {
 
     public BinaryTreeExpression compile(String[] words) {
         TreeNode root = treeifyBin(words, 0, words.length);
@@ -42,40 +42,41 @@ public class BinTreeExpressionGen {
         for (int i = left; i < right; i++) {
             String word = words[i];
             switch (word) {
-                // 低优先级操作符直接进操作符栈
                 case "(":
                 case "==":
                 case "!=":
+                    // 低优先级操作符直接进操作符栈
                     operatorStack.push(word);
                     break;
-                // && 或 ||为高优先级，要构建根节点
                 case "&&":
                 case "||":
-                    TreeNode newRoot = new TreeNode(OperatorType.fromSymbol(word), null);
-                    if (operatorStack.isEmpty()) {
+                    // && 或 || 为高优先级，要构建根节点
+                    TreeNode newRoot = new TreeNode(OperatorType.fromSymbol(word), word);
+
+                    if (numStack.isEmpty() && operatorStack.isEmpty()) {
+                        // 如果此时栈是空的，说明左子树已经构建完毕。递归构建右子树
                         newRoot.left = root;
+                        newRoot.right = treeifyBin(words, i + 1, right);
                         root = newRoot;
-                        continue;
+                        return root;
                     } else {
+                        // 如果此时栈不为空，当前节点的左子树尚未构建。首先构建左子树
                         child = genOneTreeNode(numStack, operatorStack);
-                        if (root != null) {
-                            if (root.left == null) {
-                                root.left = child;
-                                newRoot.left = root;
-                            } else if (root.right == null) {
+                        if (numStack.isEmpty() && operatorStack.isEmpty()) {
+                            // child构建完以后，如果此时操作数栈和操作符栈均为空
+                            newRoot.left = child;
+                            newRoot.right = treeifyBin(words, i + 1, right);
+                            root = newRoot;
+                            return root;
+                        } else {
+                            if (root != null && root.right == null) {
                                 root.right = child;
                                 newRoot.left = root;
+                            } else {
+                                newRoot.left = child;
                             }
-                        } else {
-                            newRoot.left = child;
+                            root = newRoot;
                         }
-                        root = newRoot;
-                    }
-                    if (numStack.isEmpty() && operatorStack.isEmpty()) {
-                        // 如果此时操作数栈和操作符栈均为空，说明找到了树的根节点
-                        // 并且左子树已经构建完毕，此时递归构建右子树即可
-                        root.right = treeifyBin(words, i + 1, right);
-                        return root;
                     }
                     break;
                 case ")":
@@ -117,7 +118,7 @@ public class BinTreeExpressionGen {
     }
 
     /**
-     * 从操作符栈出栈一个操作符，作为跟节点。
+     * 从操作符栈出栈一个操作符，作为根节点
      * 从操作数栈连续出栈两个操作数，分别为右子树和左子树
      * 如：
      * <pre>
@@ -138,7 +139,7 @@ public class BinTreeExpressionGen {
      */
     private TreeNode genOneTreeNode(Stack<String> numStack, Stack<String> operatorStack) {
         String oper = operatorStack.pop();
-        TreeNode root = new TreeNode(OperatorType.fromSymbol(oper), null);
+        TreeNode root = new TreeNode(OperatorType.fromSymbol(oper), oper);
 
         // 进栈的顺序是先key后value，而出栈时是先value后key
         String value = numStack.pop();
