@@ -11,6 +11,13 @@ public class BinTreeExpression {
         this.root = root;
     }
 
+    /**
+     * 后序遍历
+     *
+     * @param param 参数对
+     * @param root  根节点
+     * @return 执行结果
+     */
     public boolean execute(Map<String, String> param, TreeNode root) {
         if (root == null || param == null || param.isEmpty()) {
             return false;

@@ -19,16 +19,16 @@ public class BinTreeExpressionGenTest {
     @Test
     public void test2() {
         BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
-        /**
-         *  a == 1 && b == 2
-         * <pre>
-         *           &&
-         *         /    |
-         *        ==    ==
-         *      /   |  /  |
-         *     a    1  b   2
-         *
-         * </pre>
+        /*
+           a == 1 && b == 2
+          <pre>
+                    &&
+                  /    |
+                 ==    ==
+               /   |  /  |
+              a    1  b   2
+
+          </pre>
          */
         String[] words = {"a", "==", "1", "&&", "b", "==", "2", "#"};
         TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
@@ -107,7 +107,6 @@ public class BinTreeExpressionGenTest {
         Assert.assertEquals(OperatorType.NEQ, treeNode.right.operatorType);
         Assert.assertEquals("drctn", treeNode.right.left.value);
         Assert.assertEquals("22", treeNode.right.right.value);
-
     }
 
 
