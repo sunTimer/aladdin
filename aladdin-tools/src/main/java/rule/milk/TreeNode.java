@@ -11,10 +11,7 @@ public class TreeNode {
     public TreeNode left;
     public TreeNode right;
 
-    public TreeNode parent;
-
     public String value;
-
     public OperatorType operatorType;
 
     public TreeNode(OperatorType operatorType, String value) {
@@ -27,7 +24,6 @@ public class TreeNode {
         return "TreeNode{" +
                 "left=" + left +
                 ", right=" + right +
-                ", parent=" + parent +
                 ", value='" + value + '\'' +
                 ", operatorType=" + operatorType +
                 '}';

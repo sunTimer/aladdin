@@ -4,7 +4,7 @@ import rule.milk.OperatorType;
 import rule.milk.BinTreeExpressionGen;
 import rule.milk.TreeNode;
 
-public class BinTreeExpressionGenTest {
+public class BinaryTreeExpressionGenTest {
 
     @Test
     public void test1() {
@@ -19,16 +19,16 @@ public class BinTreeExpressionGenTest {
     @Test
     public void test2() {
         BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
-        /*
-           a == 1 && b == 2
-          <pre>
-                    &&
-                  /    |
-                 ==    ==
-               /   |  /  |
-              a    1  b   2
-
-          </pre>
+        /**
+         *  a == 1 && b == 2
+         * <pre>
+         *           &&
+         *         /    |
+         *        ==    ==
+         *      /   |  /  |
+         *     a    1  b   2
+         *
+         * </pre>
          */
         String[] words = {"a", "==", "1", "&&", "b", "==", "2", "#"};
         TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);

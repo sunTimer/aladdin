@@ -16,9 +16,9 @@ import java.util.Stack;
  */
 public class BinTreeExpressionGen {
 
-    public BinTreeExpression compile(String[] words) {
+    public BinaryTreeExpression compile(String[] words) {
         TreeNode root = treeifyBin(words, 0, words.length);
-        return new BinTreeExpression(root);
+        return new BinaryTreeExpression(root);
     }
 
     /**
@@ -69,13 +69,13 @@ public class BinTreeExpressionGen {
                         } else {
                             newRoot.left = child;
                         }
-
                         root = newRoot;
                     }
                     if (numStack.isEmpty() && operatorStack.isEmpty()) {
                         // 如果此时操作数栈和操作符栈均为空，说明找到了树的根节点
                         // 并且左子树已经构建完毕，此时递归构建右子树即可
                         root.right = treeifyBin(words, i + 1, right);
+                        return root;
                     }
                     break;
                 case ")":
@@ -113,7 +113,7 @@ public class BinTreeExpressionGen {
                     numStack.push(word);
             }
         }
-        return null;
+        return root;
     }
 
     /**

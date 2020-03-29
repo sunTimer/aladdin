@@ -21,16 +21,16 @@ public class Main {
 
         int n = 50000;
 
-        List<BinTreeExpression> binTreeExpressions = new ArrayList<>(n);
+        List<BinaryTreeExpression> binaryTreeExpressions = new ArrayList<>(n);
 
         for (int i = 0; i < n; i++) {
-            binTreeExpressions.add(binTreeExpressionGen.compile(words));
+            binaryTreeExpressions.add(binTreeExpressionGen.compile(words));
         }
 
         for (int i = 0; i < 10000; i++) {
             long start = System.nanoTime();
-            for (BinTreeExpression binTreeExpression : binTreeExpressions) {
-                binTreeExpression.execute(map, binTreeExpression.root);
+            for (BinaryTreeExpression binaryTreeExpression : binaryTreeExpressions) {
+                binaryTreeExpression.execute(map, binaryTreeExpression.root);
             }
             System.out.println("cost:" + (System.nanoTime() - start) / 1000.0 / 1000.0);
         }

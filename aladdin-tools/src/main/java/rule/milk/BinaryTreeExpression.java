@@ -3,12 +3,16 @@ package rule.milk;
 import java.util.Map;
 
 
-public class BinTreeExpression {
+public class BinaryTreeExpression {
 
     public TreeNode root;
 
-    public BinTreeExpression(TreeNode root) {
+    public BinaryTreeExpression(TreeNode root) {
         this.root = root;
+    }
+
+    public boolean execute(Map<String, String> param) {
+        return execute(param, root);
     }
 
     /**
