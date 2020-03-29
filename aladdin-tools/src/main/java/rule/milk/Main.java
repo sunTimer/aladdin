@@ -25,7 +25,7 @@ public class Main {
 
 
         for (int i = 0; i < n; i++) {
-            TreeNode treeNode = expressionTreeGen.buildTree(words, 0, words.length);
+            TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
             expressionTrees.add(new ExpressionTree(treeNode));
         }
 
