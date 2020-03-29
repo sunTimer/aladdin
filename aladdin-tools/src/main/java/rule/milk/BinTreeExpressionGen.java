@@ -14,7 +14,12 @@ import java.util.Stack;
  *                  n   4  h  1
  * </pre>
  */
-public class ExpressionTreeGen {
+public class BinTreeExpressionGen {
+
+    public BinTreeExpression compile(String[] words) {
+        TreeNode root = treeifyBin(words, 0, words.length);
+        return new BinTreeExpression(root);
+    }
 
     /**
      * 构建方法：

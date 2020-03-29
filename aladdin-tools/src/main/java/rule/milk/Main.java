@@ -13,7 +13,7 @@ public class Main {
         map.put("msgTp", "epcc.201.001.01");
         map.put("drctn", "22");
 
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
 //        String[] words = {"(", "msgTp", "==", "epcc.201.001.01", "&&", "drctn", "==", "22", ")", "||", "instOrgCode", "!=", "alipay", "#"};
         String[] words = {"(", "msgTp", "==", "epcc.201.001.01", "&&", "drctn", "==", "22", ")", "#"};
         //String[] words = {"msgTp", "==", "epcc.201.001.01", "#"};
@@ -21,19 +21,16 @@ public class Main {
 
         int n = 50000;
 
-        List<ExpressionTree> expressionTrees = new ArrayList<>(n);
-
+        List<BinTreeExpression> binTreeExpressions = new ArrayList<>(n);
 
         for (int i = 0; i < n; i++) {
-            TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
-            expressionTrees.add(new ExpressionTree(treeNode));
+            binTreeExpressions.add(binTreeExpressionGen.compile(words));
         }
 
         for (int i = 0; i < 10000; i++) {
-
             long start = System.nanoTime();
-            for (ExpressionTree expressionTree : expressionTrees) {
-                expressionTree.execute(map, expressionTree.root);
+            for (BinTreeExpression binTreeExpression : binTreeExpressions) {
+                binTreeExpression.execute(map, binTreeExpression.root);
             }
             System.out.println("cost:" + (System.nanoTime() - start) / 1000.0 / 1000.0);
         }

@@ -1,16 +1,16 @@
 import org.junit.Assert;
 import org.junit.Test;
 import rule.milk.OperatorType;
-import rule.milk.ExpressionTreeGen;
+import rule.milk.BinTreeExpressionGen;
 import rule.milk.TreeNode;
 
-public class ExpressionTreeGenTest {
+public class BinTreeExpressionGenTest {
 
     @Test
     public void test1() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"a", "==", "1", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals("==", treeNode.operatorType.getSymbol());
         Assert.assertEquals(treeNode.left.value, "a");
         Assert.assertEquals(treeNode.right.value, "1");
@@ -18,7 +18,7 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test2() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         /**
          *  a == 1 && b == 2
          * <pre>
@@ -31,7 +31,7 @@ public class ExpressionTreeGenTest {
          * </pre>
          */
         String[] words = {"a", "==", "1", "&&", "b", "==", "2", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals("&&", treeNode.operatorType.getSymbol());
         Assert.assertEquals("==", treeNode.left.operatorType.getSymbol());
         Assert.assertEquals("==", treeNode.right.operatorType.getSymbol());
@@ -44,9 +44,9 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test3() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"(", "a", "==", "1", ")", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals("==", treeNode.operatorType.getSymbol());
         Assert.assertEquals(treeNode.left.value, "a");
         Assert.assertEquals(treeNode.right.value, "1");
@@ -54,9 +54,9 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test4() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"(", "(", "a", "==", "1", ")", ")", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals("==", treeNode.operatorType.getSymbol());
         Assert.assertEquals(treeNode.left.value, "a");
         Assert.assertEquals(treeNode.right.value, "1");
@@ -65,9 +65,9 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test5() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"(", "msgTp", "==", "epcc.201.001.01", "&&", "drctn", "==", "22", ")", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals("&&", treeNode.operatorType.getSymbol());
         Assert.assertEquals(treeNode.left.operatorType, OperatorType.EQ);
         Assert.assertEquals("msgTp", treeNode.left.left.value);
@@ -80,9 +80,9 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test6() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"(", "msgTp", "==", "epcc.201.001.01", "&&", "drctn", "!=", "22", ")", "||", "instOrgCode", "==", "alipay", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals(OperatorType.OR, treeNode.operatorType);
         Assert.assertEquals(OperatorType.AND, treeNode.left.operatorType);
         Assert.assertEquals(OperatorType.EQ, treeNode.left.left.operatorType);
@@ -96,9 +96,9 @@ public class ExpressionTreeGenTest {
 
     @Test
     public void test7() {
-        ExpressionTreeGen expressionTreeGen = new ExpressionTreeGen();
+        BinTreeExpressionGen binTreeExpressionGen = new BinTreeExpressionGen();
         String[] words = {"(", "msgTp", "==", "epcc.201.001.01", "&&", "drctn", "!=", "22", ")", "#"};
-        TreeNode treeNode = expressionTreeGen.treeifyBin(words, 0, words.length);
+        TreeNode treeNode = binTreeExpressionGen.treeifyBin(words, 0, words.length);
         Assert.assertEquals(OperatorType.AND, treeNode.operatorType);
         Assert.assertEquals(OperatorType.EQ, treeNode.left.operatorType);
         Assert.assertEquals("msgTp", treeNode.left.left.value);
