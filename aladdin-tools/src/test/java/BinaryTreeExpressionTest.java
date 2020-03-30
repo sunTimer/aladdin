@@ -1,17 +1,14 @@
 import org.junit.Assert;
 import org.junit.Test;
-import rule.milk.BinaryTreeExpression;
 import rule.milk.BinTreeEvaluator;
-import rule.milk.TreeNode;
+import rule.milk.BinaryTreeExpression;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BinaryTreeExpressionTest {
 
     BinTreeEvaluator binTreeEvaluator = new BinTreeEvaluator();
-
 
     @Test
     public void test() {
@@ -22,8 +19,7 @@ public class BinaryTreeExpressionTest {
                 "&&",
                 "instOrgCode", "==", "alipay",
                 "||",
-                "bankOrgCode", "==", "ICBC",
-                "#"
+                "bankOrgCode", "==", "ICBC"
         };
         BinaryTreeExpression expression = binTreeEvaluator.compile(words);
 
@@ -34,6 +30,8 @@ public class BinaryTreeExpressionTest {
         param.put("bankOrgCode", "ICBC");
         boolean ret = expression.execute(param);
         Assert.assertTrue(ret);
+
+        expression.root.printTree();
     }
 
     @Test
@@ -50,7 +48,6 @@ public class BinaryTreeExpressionTest {
                 , "||"
                 , "instOrgCode", "==", "JDPay"
                 , ")"
-                , "#"
         };
         BinaryTreeExpression expression = binTreeEvaluator.compile(words);
 
@@ -72,8 +69,9 @@ public class BinaryTreeExpressionTest {
 
         param.put("msgTp", "epcc.211.001.01");
         ret = expression.execute(param);
-        System.out.println(expression.root);
         Assert.assertFalse(ret);
+
+        expression.root.printTree();
     }
 
     @Test
@@ -96,7 +94,6 @@ public class BinaryTreeExpressionTest {
                 , "||"
                 , "instOrgCode", "==", "NetEasyPay"
                 , ")"
-                , "#"
         };
         BinaryTreeExpression expression = binTreeEvaluator.compile(words);
 
@@ -118,8 +115,9 @@ public class BinaryTreeExpressionTest {
 
         param.put("msgTp", "epcc.211.001.01");
         ret = expression.execute(param);
-        System.out.println(expression.root);
         Assert.assertFalse(ret);
+
+        expression.root.printTree();
     }
 
 
@@ -145,7 +143,6 @@ public class BinaryTreeExpressionTest {
                 , "||"
                 , "instOrgCode", "==", "NetEasyPay"
                 , ")"
-                , "#"
         };
         BinaryTreeExpression expression = binTreeEvaluator.compile(words);
 
@@ -167,9 +164,7 @@ public class BinaryTreeExpressionTest {
 
         param.put("msgTp", "epcc.211.001.01");
         ret = expression.execute(param);
-        System.out.println(expression.root);
         Assert.assertFalse(ret);
-
 
         expression.root.printTree();
     }

@@ -43,6 +43,7 @@ public class TreeNode {
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 tmp.add(node);
+                assert node != null;
                 if (node.left != null) {
                     queue.add(node.left);
                     count++;
@@ -65,13 +66,9 @@ public class TreeNode {
         for (List<TreeNode> list : lists) {
             for (TreeNode node : list) {
                 for (int k = 0; k < j; k++) {
-                    if (node.operatorType == OperatorType.VALUE) {
-                        System.out.print("--");
-                    } else {
-                        System.out.print("--");
-                    }
+                    System.out.print("--");
                 }
-                if (node.operatorType == OperatorType.VALUE) {
+                if (node.operatorType == OperatorType.NUM) {
                     System.out.print(node.value);
                 } else {
                     System.out.print(node.operatorType.getSymbol());

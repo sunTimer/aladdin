@@ -6,14 +6,40 @@ import java.util.Map;
 
 public enum OperatorType {
 
-    EQ("==", 1),
-    NEQ("!=", 2),
+
     AND("&&", 3),
-    OR("||", 4),
-    VALUE("", 5),
-    LEFT_MARK("(", 6),
+    OR("||", 2),
+
+    EQ("==", 4),
+    NEQ("!=", 4),
+
+    NUM("", 0),
+    LEFT_MARK("(", 0),
     RIGHT_MARK(")", 7),
-    SINGLE_AND("&", 8);
+    SINGLE_AND("&", 8),
+    NOT("!", 1),
+
+    MULT("*", 4),
+
+    DIV("/", 4),
+
+    MOD("%", 2),
+
+    ADD("+", 3),
+
+    SUB("-", 3),
+
+    LT("<", 2),
+
+    LE("<=", 2),
+
+    GT(">", 2),
+
+    GE(">=", 2),
+
+    MATCH("=~", 2),
+
+    ;
 
     static Map<String, OperatorType> operatorTypeMap = new HashMap<>();
 
@@ -33,11 +59,11 @@ public enum OperatorType {
 
 
     String symbol;
-    int type;
+    int priority;
 
     OperatorType(String s, int i) {
         this.symbol = s;
-        this.type = i;
+        this.priority = i;
     }
 
     public static Map<String, OperatorType> getOperatorTypeMap() {
@@ -56,11 +82,12 @@ public enum OperatorType {
         this.symbol = symbol;
     }
 
-    public int getType() {
-        return type;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
+
 }

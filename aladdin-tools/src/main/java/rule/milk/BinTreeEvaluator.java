@@ -22,7 +22,7 @@ public class BinTreeEvaluator {
     }
 
     /**
-     * 构建方法：
+     * 根据中缀表达式构建树：
      * 1. 构建左子树
      * 2. 找到根节点
      * 3。 构建右子树
@@ -34,13 +34,17 @@ public class BinTreeEvaluator {
      */
     public TreeNode treeifyBin(String[] words, int left, int right) {
 
+        if (left >= right) {
+            return null;
+        }
+
         Stack<String> numStack = new Stack<>();
         Stack<String> operatorStack = new Stack<>();
 
         TreeNode root = null;
         TreeNode child;
-        for (int i = left; i < right; i++) {
-            String word = words[i];
+        while (left < right) {
+            String word = words[left];
             switch (word) {
                 case "(":
                 case "==":
@@ -53,19 +57,21 @@ public class BinTreeEvaluator {
                     // && 或 || 为高优先级，要构建根节点
                     TreeNode newRoot = new TreeNode(OperatorType.fromSymbol(word), word);
 
+
                     if (numStack.isEmpty() && operatorStack.isEmpty()) {
                         // 如果此时栈是空的，说明左子树已经构建完毕。递归构建右子树
                         newRoot.left = root;
-                        newRoot.right = treeifyBin(words, i + 1, right);
+                        newRoot.right = treeifyBin(words, left + 1, right);
                         root = newRoot;
                         return root;
                     } else {
                         // 如果此时栈不为空，当前节点的左子树尚未构建。首先构建左子树
                         child = genOneTreeNode(numStack, operatorStack);
+
                         if (numStack.isEmpty() && operatorStack.isEmpty()) {
                             // child构建完以后，如果此时操作数栈和操作符栈均为空
                             newRoot.left = child;
-                            newRoot.right = treeifyBin(words, i + 1, right);
+                            newRoot.right = treeifyBin(words, left + 1, right);
                             root = newRoot;
                             return root;
                         } else {
@@ -95,23 +101,40 @@ public class BinTreeEvaluator {
                     // 把左括号出栈
                     operatorStack.pop();
                     break;
-                case "#":
-                    // # 代表结束符，此时需要判断操作符栈和操作数栈是否为空
-                    // 如果为空说明树已经构建完毕。如果不为空，则至多还存在一个节点没有生成。
-                    // 因此直接构建该节点即可，所以这里没有用循环遍历操作数栈和操作符栈
-                    if (numStack.isEmpty() && operatorStack.isEmpty()) {
-                        return root;
-                    }
-                    child = genOneTreeNode(numStack, operatorStack);
-                    if (root == null) {
-                        return child;
-                    } else {
-                        root.right = child;
-                        return root;
-                    }
+//                case "#":
+//                    // # 代表结束符，此时需要判断操作符栈和操作数栈是否为空
+//                    // 如果为空说明树已经构建完毕。如果不为空，则至多还存在一个节点没有生成。
+//                    // 因此直接构建该节点即可，所以这里没有用循环遍历操作数栈和操作符栈
+//                    if (numStack.isEmpty() && operatorStack.isEmpty()) {
+//                        return root;
+//                    }
+//                    child = genOneTreeNode(numStack, operatorStack);
+//                    if (root == null) {
+//                        return child;
+//                    } else {
+//                        root.right = child;
+//                        return root;
+//                    }
                 default:
                     // 若word不是以上任何类型，则说明word是一个操作数，直接进操作数栈
                     numStack.push(word);
+            }
+            left++;
+        }
+
+        if (left == right) {
+            // # 代表结束，此时需要判断操作符栈和操作数栈是否为空
+            // 如果为空说明树已经构建完毕。如果不为空，则至多还存在一个节点没有生成。
+            // 因此直接构建该节点即可，所以这里没有用循环遍历操作数栈和操作符栈
+            if (numStack.isEmpty() && operatorStack.isEmpty()) {
+                return root;
+            }
+            child = genOneTreeNode(numStack, operatorStack);
+            if (root == null) {
+                return child;
+            } else {
+                root.right = child;
+                return root;
             }
         }
         return root;
@@ -144,8 +167,8 @@ public class BinTreeEvaluator {
         // 进栈的顺序是先key后value，而出栈时是先value后key
         String value = numStack.pop();
         String key = numStack.pop();
-        root.left = new TreeNode(OperatorType.VALUE, key);
-        root.right = new TreeNode(OperatorType.VALUE, value);
+        root.left = new TreeNode(OperatorType.NUM, key);
+        root.right = new TreeNode(OperatorType.NUM, value);
         return root;
     }
 }
