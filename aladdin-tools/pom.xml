@@ -47,6 +47,14 @@
             <version>4.1.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.eweb4j/fel -->
+        <dependency>
+            <groupId>org.eweb4j</groupId>
+            <artifactId>fel</artifactId>
+            <version>0.8</version>
+        </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/org.mvel/mvel2 -->
         <dependency>
