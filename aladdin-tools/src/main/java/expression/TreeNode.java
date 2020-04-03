@@ -1,4 +1,4 @@
-package rule.milk;
+package expression;
 
 import java.util.*;
 
@@ -14,11 +14,11 @@ public class TreeNode {
     public TreeNode right;
 
     public String value;
-    public OperatorType operatorType;
+    public OperatorType type;
 
-    public TreeNode(OperatorType operatorType, String value) {
+    public TreeNode(OperatorType type, String value) {
         this.value = value;
-        this.operatorType = operatorType;
+        this.type = type;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class TreeNode {
                 "left=" + left +
                 ", right=" + right +
                 ", v='" + value + '\'' +
-                ", type=" + operatorType +
+                ", type=" + type +
                 '}';
     }
 
@@ -68,10 +68,10 @@ public class TreeNode {
                 for (int k = 0; k < j; k++) {
                     System.out.print("--");
                 }
-                if (node.operatorType == OperatorType.NUM) {
+                if (node.type == OperatorType.NUM) {
                     System.out.print(node.value);
                 } else {
-                    System.out.print(node.operatorType.getSymbol());
+                    System.out.print(node.type.getSymbol());
                 }
             }
             j--;

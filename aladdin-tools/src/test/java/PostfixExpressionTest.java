@@ -1,12 +1,10 @@
-import expression.PostfixExpression;
-import expression.Token;
+import expression.*;
 import org.junit.Assert;
 import org.junit.Test;
-import rule.milk.BinaryTreeExpression;
-import rule.milk.OperatorType;
-import rule.milk.TreeNode;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PostfixExpressionTest {
@@ -95,7 +93,7 @@ public class PostfixExpressionTest {
                 , new Token(OperatorType.MULT, "*")
                 , new Token(OperatorType.NUM, "1.06")
         };
-        Token[] postfix = postfixExpression.infixToPostfix(tokens);
+        List<Token> postfix = postfixExpression.infixToPostfix(Arrays.asList(tokens));
         for (Token token : postfix) {
             System.out.println(token);
         }
@@ -127,21 +125,21 @@ public class PostfixExpressionTest {
                 , new Token(OperatorType.EQ, "==")
                 , new Token(OperatorType.NUM, "4")
         };
-        Token[] postfix = postfixExpression.infixToPostfix(tokens);
+        List<Token> postfix = postfixExpression.infixToPostfix(Arrays.asList(tokens));
         for (Token token : postfix) {
             System.out.println(token);
         }
 
         TreeNode treeNode = postfixExpression.treeifyBin(postfix);
         treeNode.printTree();
-        BinaryTreeExpression binaryTreeExpression = new BinaryTreeExpression(treeNode);
+        TreeExpression treeExpression = new TreeExpression(treeNode);
 
         Map<String, String> param = new HashMap<>();
         param.put("a", "2");
         param.put("b", "2");
-        Assert.assertTrue(binaryTreeExpression.execute(param));
+        Assert.assertTrue(treeExpression.execute(param));
         param.put("a", "1");
-        Assert.assertFalse(binaryTreeExpression.execute(param));
+        Assert.assertFalse(treeExpression.execute(param));
     }
 
     @Test
@@ -169,7 +167,7 @@ public class PostfixExpressionTest {
                 , new Token(OperatorType.RIGHT_MARK, ")")
 
         };
-        Token[] postfix = postfixExpression.infixToPostfix(tokens);
+        List<Token> postfix = postfixExpression.infixToPostfix(Arrays.asList(tokens));
         for (Token token : postfix) {
             System.out.println(token);
         }
@@ -203,21 +201,21 @@ public class PostfixExpressionTest {
                 , new Token(OperatorType.EQ, "==")
                 , new Token(OperatorType.NUM, "4")
         };
-        Token[] postfix = postfixExpression.infixToPostfix(tokens);
+        List<Token> postfix = postfixExpression.infixToPostfix(Arrays.asList(tokens));
         for (Token token : postfix) {
             System.out.println(token);
         }
 
         TreeNode treeNode = postfixExpression.treeifyBin(postfix);
         treeNode.printTree();
-        BinaryTreeExpression binaryTreeExpression = new BinaryTreeExpression(treeNode);
+        TreeExpression treeExpression = new TreeExpression(treeNode);
 
         Map<String, String> param = new HashMap<>();
         param.put("a", "2");
         param.put("b", "2");
-        Assert.assertTrue(binaryTreeExpression.execute(param));
+        Assert.assertTrue(treeExpression.execute(param));
         param.put("a", "1");
-        Assert.assertFalse(binaryTreeExpression.execute(param));
+        Assert.assertFalse(treeExpression.execute(param));
     }
 
 }

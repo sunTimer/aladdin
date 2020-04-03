@@ -1,4 +1,4 @@
-package rule.milk;
+package expression;
 
 
 import java.util.HashMap;
@@ -14,30 +14,26 @@ public enum OperatorType {
     NEQ("!=", 4),
 
     NUM("", 0),
+    KEY("", 0),
     LEFT_MARK("(", 0),
     RIGHT_MARK(")", 7),
-    SINGLE_AND("&", 8),
+    BIT_AND("&", 8),
+    BIT_OR("|", 2),
+
     NOT("!", 1),
 
-    MULT("*", 4),
+    MULT("*", 8),
+    DIV("/", 8),
+    MOD("%", 9),
+    ADD("+", 7),
+    SUB("-", 7),
 
-    DIV("/", 4),
+    LT("<", 4),
+    LE("<=", 4),
+    GT(">", 4),
+    GE(">=", 4),
 
-    MOD("%", 2),
-
-    ADD("+", 3),
-
-    SUB("-", 3),
-
-    LT("<", 2),
-
-    LE("<=", 2),
-
-    GT(">", 2),
-
-    GE(">=", 2),
-
-    MATCH("=~", 2),
+    ASSIGNMENT("=", 2),
 
     ;
 

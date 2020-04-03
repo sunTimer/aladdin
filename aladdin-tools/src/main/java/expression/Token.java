@@ -1,7 +1,5 @@
 package expression;
 
-import rule.milk.OperatorType;
-
 public class Token implements Comparable<Token> {
     /**
      * 1 操作数
