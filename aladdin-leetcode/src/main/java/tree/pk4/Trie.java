@@ -121,6 +121,10 @@ public class Trie {
         Assert.assertTrue(trie.startsWith("app"));
         trie.insert("app");
         Assert.assertTrue(trie.search("app"));     // 返回 true
+
+        trie.insert("shixu");
+        trie.insert("name");
+        trie.insert("beijing");
     }
 }
 
