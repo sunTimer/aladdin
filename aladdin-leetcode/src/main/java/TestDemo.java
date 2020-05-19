@@ -1,6 +1,8 @@
+import linkedlist.ListNode;
 import org.junit.Test;
 import sun.misc.Unsafe;
 
+import java.util.Stack;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestDemo {
@@ -36,6 +38,132 @@ public class TestDemo {
             System.out.println();
         }
 
+    }
+
+    @Test
+    public void testReorderList2() {
+        int[] a = {1, 2,3};
+        ListNode head = ListNode.buildList(a);
+        reorderList2(head);
+        System.out.println(head);
+    }
+
+
+    public void reorderList2(ListNode head) {
+        if (head == null || head.next == null) {
+            return;
+        }
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        ListNode tail = slow.next;
+        slow.next = null;
+
+        ListNode reversedHead = reverse(tail);
+
+        ListNode curr = head;
+        while (reversedHead != null) {
+            ListNode next = curr.next;
+            curr.next = reversedHead;
+            ListNode next1 = reversedHead.next;
+            curr.next.next = next;
+            curr = curr.next.next;
+            reversedHead = next1;
+        }
+    }
+
+    private ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode curr = head.next;
+        ListNode reversed = head;
+        reversed.next = null;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = reversed;
+            reversed = curr;
+            curr = next;
+        }
+        return reversed;
+    }
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(0);
+
+        ListNode curr = head;
+
+        int carry = 0;
+        int sum = 0;
+        while (l1 != null || l2 != null) {
+            sum += carry;
+            if(l1 == null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+            if(l2 == null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+
+            carry = sum / 10;
+            sum = sum % 10;
+
+            curr.next = new ListNode(sum);
+            curr = curr.next;
+        }
+        if (carry == 1) {
+            curr.next = new ListNode(1);
+        }
+        return head.next;
+    }
+
+    @Test
+    public void testRev() {
+        int[] a = {1, 2, 3};
+        System.out.println(reverse(ListNode.buildList(a)));
+    }
+
+    public void reorderList(ListNode head) {
+        if (head == null) {
+            return;
+        }
+        Stack<ListNode> stack = new Stack<>();
+        ListNode curr = head;
+
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.next;
+        }
+
+        curr = head;
+        int count = stack.size();
+        int index = 0;
+        while (index < count) {
+            index += 2;
+            ListNode next = curr.next;
+            curr.next = stack.pop();
+            curr.next.next = next;
+            curr = next;
+        }
+        if ((count & 1) == 0) {
+            curr.next = null;
+        } else {
+            curr.next.next = null;
+        }
+    }
+
+    @Test
+    public void test3() {
+        int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ListNode head = ListNode.buildList(a);
+        reorderList(head);
+        System.out.println(head);
     }
 }
 

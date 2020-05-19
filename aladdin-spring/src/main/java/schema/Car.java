@@ -1,7 +1,12 @@
 package schema;
 
 
-public class Car {
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+public class Car implements BeanNameAware , ApplicationContextAware {
 
     private String brand;
     private float engine;
@@ -39,5 +44,15 @@ public class Car {
                 ", engine=" + engine +
                 ", horsePower=" + horsePower +
                 '}';
+    }
+
+    String name;
+
+    public void setBeanName(String name) {
+        this.name = name;
+    }
+
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+
     }
 }

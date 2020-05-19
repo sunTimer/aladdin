@@ -1,5 +1,6 @@
 package thread;
 
+import java.util.concurrent.Semaphore;
 import java.util.function.IntConsumer;
 
 /**
@@ -32,16 +33,75 @@ public class _1116 {
         this.n = n;
     }
 
+    private int curr;
+
+    Semaphore one = new Semaphore(1);
+    Semaphore two = new Semaphore(0);
+    Semaphore three = new Semaphore(0);
+
+
     // printNumber.accept(x) outputs "x", where x is an integer.
     public void zero(IntConsumer printNumber) throws InterruptedException {
-
+        for (int i = 0; i < n; i++) {
+            one.acquire();
+            printNumber.accept(0);
+            curr++;
+            two.release();
+        }
     }
 
     public void even(IntConsumer printNumber) throws InterruptedException {
-
+        for (; curr < n; ) {
+            two.acquire();
+            printNumber.accept(curr);
+            three.release();
+        }
     }
 
     public void odd(IntConsumer printNumber) throws InterruptedException {
+        for (; curr < n; ) {
+            three.acquire();
+            printNumber.accept(curr);
+            one.release();
+        }
+    }
+
+    public static void main(String[] args) {
+        _1116 z = new _1116(2);
+
+        new Thread(() -> {
+            try {
+                z.zero(System.out::print);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        new Thread(() -> {
+            try {
+                z.even(value -> {
+                    if (value % 2 == 1) {
+                        System.out.print(value);
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+
+        new Thread(() -> {
+            try {
+                z.odd(value -> {
+                    if (value % 2 == 0) {
+                        System.out.print(value);
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
 
     }
 }

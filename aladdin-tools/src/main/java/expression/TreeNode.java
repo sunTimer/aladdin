@@ -101,13 +101,6 @@ public class TreeNode {
 
         TreeEvaluator treeEvaluator = new TreeEvaluator();
         TreeExpression p = treeEvaluator.compile("c == 3 && a == 1 && b == 2");
-        TreeExpression q = treeEvaluator.compile("b == 2 && a == 1 && c == 3");
-
-        p.root.printTree();
-        q.root.printTree();
-
-        System.out.println(equals(p.root, q.root));
+        TreeOperation.show(p.root);
     }
-
-
 }

@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="aladdin-tools" />
         <module name="aladdin-netty" />
-        <module name="aladdin-j8" />
         <module name="aladdin-sentinel" />
         <module name="aladdin-fenci" />
         <module name="aladdin-spring" />
+        <module name="aladdin-jdk" />
         <module name="aladdin-leetcode" />
-        <module name="aladdin-tools" />
       </profile>
     </annotationProcessing>
   </component>
