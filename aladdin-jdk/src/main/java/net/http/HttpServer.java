@@ -19,6 +19,7 @@ public class HttpServer {
             while (true) {
                 /*实例化客户端，固定套路，通过服务端接受的对象，生成相应的客户端实例*/
                 Socket socket = ss.accept();
+                System.out.println(socket.getPort());
                 /*获取客户端输入流，就是请求过来的基本信息：请求头，换行符，请求体*/
                 BufferedReader bd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
