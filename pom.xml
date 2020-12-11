@@ -16,6 +16,9 @@
         <module>aladdin-fenci</module>
         <module>aladdin-tools</module>
         <module>aladdin-sentinel</module>
+        <module>aladdin-kafka</module>
+        <module>aladdin-zookeeper</module>
+        <module>aladdin-redis4j</module>
     </modules>
 
     <dependencies>

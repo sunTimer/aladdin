@@ -9,10 +9,13 @@
         <module name="aladdin-tools" />
         <module name="aladdin-netty" />
         <module name="aladdin-sentinel" />
+        <module name="aladdin-redis4j" />
+        <module name="aladdin-kafka" />
         <module name="aladdin-fenci" />
         <module name="aladdin-spring" />
         <module name="aladdin-jdk" />
         <module name="aladdin-leetcode" />
+        <module name="aladdin-zookeeper" />
       </profile>
     </annotationProcessing>
   </component>

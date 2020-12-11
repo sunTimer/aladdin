@@ -1,4 +1,13 @@
+import java.util.UUID;
+
 public class Test{
+
+
+    @org.junit.Test
+    public void test(){
+        System.out.println(UUID.randomUUID().toString());
+    }
+
     public static void main(String[] args) {
         System.out.println(-9 % 5);
         Thread thread = new Thread(new Runnable() {

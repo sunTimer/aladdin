@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Stack;
 
@@ -17,6 +18,34 @@ public class _20 {
         markMaps.put('{', '}');
         markMaps.put('(', ')');
         markMaps.put('[', ']');
+    }
+
+    public boolean isValid2(String s) {
+        if(s == null || s.length()<= 1) {
+            return false;
+        }
+        LinkedList<Character> stack = new LinkedList<>();
+        int i = 0;
+
+        Map<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+
+
+        while (i < s.length()) {
+            char c = s.charAt(i);
+            if (map.containsKey(c)) {
+                if (stack.isEmpty() || stack.pop() != map.get(c)){
+                    return false;
+                }
+            } else {
+                stack.push(c);
+            }
+            i++;
+        }
+
+        return stack.isEmpty();
     }
 
     public boolean isValid(String s) {
@@ -44,10 +73,11 @@ public class _20 {
 
     @Test
     public void test() {
-        Assert.assertTrue(isValid("{}"));
+        Assert.assertTrue(isValid2("{}"));
         Assert.assertTrue(isValid("{[]}"));
         Assert.assertTrue(isValid("{}{}()[{()}]"));
         Assert.assertFalse(isValid("{"));
         Assert.assertFalse(isValid("]"));
+
     }
 }

@@ -4,9 +4,7 @@ import lambda.model.Artist;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -107,5 +105,18 @@ public class Demo {
     @Test
     public void test7() {
         IntStream.range(0, 5).forEach(System.out::println);
+    }
+
+    @Test
+    public void test8(){
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(3);
+
+        Map<Integer, Integer> map = new HashMap<>();
+        list.forEach(i -> map.put(i, map.getOrDefault(i, 0) + 1));
+        System.out.println(map);
     }
 }

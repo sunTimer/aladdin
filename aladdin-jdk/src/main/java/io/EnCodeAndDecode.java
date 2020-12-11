@@ -18,7 +18,6 @@ public class EnCodeAndDecode {
         String s = new String(bytes, StandardCharsets.UTF_16BE);
         System.out.println(s);
 
-
         for (byte aByte : name.getBytes(StandardCharsets.UTF_8)) {
             System.out.println(Integer.toHexString(aByte));
         }

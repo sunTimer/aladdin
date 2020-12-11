@@ -6,6 +6,19 @@ import java.util.Map;
 
 public class LRUCache<K, V> implements Iterable<K> {
 
+    public static void main(String[] args) {
+        LRUCache<Integer, Integer> lruCache = new LRUCache<>(5);
+
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+        lruCache.put(3, 3);
+        lruCache.put(4, 4);
+
+        for (Integer integer : lruCache) {
+            System.out.println(integer);
+        }
+    }
+
 
     Node<K, V> head;
     Node<K, V> tail;

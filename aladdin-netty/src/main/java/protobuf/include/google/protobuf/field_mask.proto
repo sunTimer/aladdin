@@ -167,7 +167,7 @@ option go_package = "google.golang.org/genproto/protobuf/field_mask;field_mask";
 //
 // If a field mask is not present on update, the operation applies to
 // all fields (as if a field mask of all fields has been specified).
-// Note that in the presence of schema evolution, this may mean that
+// Note that in the presence of com.nucc.schema evolution, this may mean that
 // fields the client does not know and has therefore not filled into
 // the request will be reset to their default. If this is unwanted
 // behavior, a specific service may require a client to always specify

@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurrentHashMapDemo {
     public static void main(String[] args) {
-        ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>(5);
+        ConcurrentHashMap<String, String> concurrentHashMap = new ConcurrentHashMap<>();
         concurrentHashMap.put("shixu", "name");
         concurrentHashMap.put("name", "name");
 

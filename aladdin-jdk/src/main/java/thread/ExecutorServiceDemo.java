@@ -11,21 +11,29 @@ import java.util.concurrent.TimeUnit;
 public class ExecutorServiceDemo {
 
     @Test
+    public void test(){
+        System.out.println(Integer.toBinaryString(-1 << 29));
+    }
+
+    @Test
     public void demo() throws InterruptedException {
-        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(10);
 
-        ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
-        ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
-
-        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(10);
+        ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(1);
 
         scheduledThreadPool.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(new Date());
             }
         }, 5, 2, TimeUnit.SECONDS);
+
+
 
         Thread.sleep(100000);
     }

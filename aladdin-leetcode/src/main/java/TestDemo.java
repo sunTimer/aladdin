@@ -165,6 +165,33 @@ public class TestDemo {
         reorderList(head);
         System.out.println(head);
     }
+
+    @Test
+    public void testSqrt(){
+        System.out.println(sqrt(100, 0.00001));
+    }
+
+    double sqrt(double num, double d){
+        double left = 1;
+        double right = num;
+
+        while (left < right) {
+            double mid = (left + right) / 2;
+            double tmp = mid * mid;
+
+            if (tmp > num) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+
+            if (Math.abs(tmp - num) < d) {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
 }
 
 class Node {

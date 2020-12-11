@@ -4,7 +4,7 @@ package tree;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Stack;
+import java.util.*;
 
 public class TravelBinaryTree {
 
@@ -25,6 +25,52 @@ public class TravelBinaryTree {
         firstTravel(root.right);
     }
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.right.left = new TreeNode(5);
+
+        System.out.println(levelOrder(root));
+    }
+
+
+
+    public static List<Integer> levelOrder(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+
+        List<Integer> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Queue<TreeNode> tmp = new LinkedList<>();
+            boolean first = true;
+            while (!queue.isEmpty()) {
+                TreeNode node = queue.poll();
+                if (first) {
+                    ret.add(node.val);
+                    first = false;
+                }
+
+                if (node.left != null) {
+                    tmp.add(node.left);
+                }
+
+                if (node.right != null) {
+                    tmp.add(node.right);
+                }
+            }
+
+            if (!tmp.isEmpty()) {
+                queue = tmp;
+            }
+        }
+
+        return ret;
+    }
 
     /**
      * 非递归实现：先序遍历

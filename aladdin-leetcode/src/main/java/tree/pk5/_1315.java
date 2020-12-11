@@ -3,9 +3,6 @@ package tree.pk5;
 import org.junit.Test;
 import tree.TreeNode;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class _1315 {
 
     @Test
