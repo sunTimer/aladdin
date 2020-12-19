@@ -1,3 +1,4 @@
+import com.google.common.collect.Lists;
 import linkedlist.ListNode;
 import org.junit.Test;
 import sun.misc.Unsafe;
@@ -7,13 +8,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestDemo {
 
+
+
     public static void main(String[] args) {
-        System.out.println(Integer.MAX_VALUE);
+        System.out.println(1 << 3);
     }
 
     @Test
     public void testArrayAddressInMem() {
 
+        String join = String.join("-", Lists.newArrayList("1", "2"));
+        System.out.println(join);
         int m = 5;
         int n = 4;
         Node[][] nodes = new Node[m][n];

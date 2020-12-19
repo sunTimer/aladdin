@@ -16,7 +16,7 @@ public class _94 {
 
         LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
 
-        while (root!= null || !stack.isEmpty()) {
+        while (root != null) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;
