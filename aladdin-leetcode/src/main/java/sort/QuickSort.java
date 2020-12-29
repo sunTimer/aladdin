@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author shixu
  */
-public class QuikSort {
+public class QuickSort {
 
     public void quickSort(List<Integer> nums) {
         nums.add(Integer.MAX_VALUE);
